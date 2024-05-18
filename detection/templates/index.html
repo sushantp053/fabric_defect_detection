@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric Defect Detection</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #video {
+            margin-top: 20px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Fabric Defect Detection</h1>
+        <video id="video" width="640" height="480" autoplay></video>
+        <img src="{% url 'video_feed' %}">
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+
+        // Get webcam feed
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((err) => {
+                console.error('Error accessing the webcam: ', err);
+            });
+    </script>
+</body>
+</html>
